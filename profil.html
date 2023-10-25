@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Profil Pages</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+
+  <style>
+    /* Tambahkan kode CSS berikut ini */
+    .sticky-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+    }
+
+    .container {
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      width: 500px;
+      margin: 0 auto;
+      text-align: center;
+      margin-top: 9%;
+      margin-bottom: 5%;
+    }
+
+    .container img {
+      width: 100px;
+      height: 100px;
+      margin: 20px auto;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    input {
+      width: 95%;
+      padding: 5px;
+    }
+
+    .container a {
+      text-decoration: none;
+      color: #FFA463;
+    }
+
+    .sidebar ul .sidebar-profil {
+      background-color: white;
+    }
+
+    .sidebar-profil .a-link {
+      color: #FFA463;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="menu-icon">
+      <img src="IMG/sidebar.jpg" alt="Menu Icon" onclick="toggleSidebar()">
+    </div>
+    <a href="#" class="logo">RUSJA</a>
+    <ul>
+      <li><a href="mainpage.html">HOME</a></li>
+      <li><a href="about_mainpage.html">ABOUT</a></li>
+      <li><a href="search_mainpage.html">SEARCH</a></li>
+      <li><a href="#" class="btn">AKUN</a></li>
+    </ul>
+  </header>
+  <div class="sidebar" id="sidebar">
+    <ul>
+      <li class="sidebar-profil"><a href="" class="a-link">PROFIL</a></li>
+      <li><a href="halamanmasukan.html">SARAN KRITIK</a></li>
+      <li><a href="#" onclick="logout()">LOGOUT</a></li>
+    </ul>
+  </div>
+  <div class="container">
+    <form action="" method="get">
+      <img id="profile-image" src="IMG/kontak/instagram.png" alt="">
+      <label for="nama">Nama</label><br>
+      <input type="text" id="nama" value="UMAR AL MASJID" readonly>
+      <br>
+      <label for="nim">NIM</label><br>
+      <input type="text" id="nim" value="F1E121164" readonly>
+      <br>
+      <label for="id_kip">ID KIP</label><br>
+      <input type="text" id="id_kip" value="190.1198.11.10.1" readonly>
+      <br>
+      <label for="datakamar">Data Kamar</label><br>
+      <input type="text" id="datakamar" value="KAMAR 1 - LANTAI 1" readonly>
+      <br>
+      <label for="alamat">Alamat</label><br>
+      <input type="text" name="alamat" id="alamat" readonly>
+      <br>
+      <label for="notelpon">No Telepon</label><br>
+      <input type="text" name="notelpon" id="notelpon" readonly>
+    </form>
+    <br>
+    <a href="editprofil.html" onclick="editProfile()">EDIT PROFIL</a>
+  </div>
+  <script>
+    function logout() {
+      var confirmation = confirm("Apakah Anda yakin ingin logout?");
+      if (confirmation) {
+        window.location.href = "index.html";
+        // Lakukan tindakan logout di sini
+        alert("Anda telah logout");
+        // Redirect ke halaman login atau halaman lain jika diperlukan
+      } else {
+        // Jika pengguna membatalkan logout, tidak ada tindakan tambahan yang perlu dilakukan
+        // window.location.href = "mainpage.html";
+      }
+    }
+
+    window.addEventListener('scroll', function () {
+      var header = document.querySelector('header');
+      var overlay = document.querySelector('.container');
+      var distance = overlay.getBoundingClientRect().top;
+
+      if (window.pageYOffset > distance) {
+        header.classList.add('sticky-header');
+      } else {
+        header.classList.remove('sticky-header');
+      }
+    });
+
+    function toggleSidebar() {
+      var sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('active');
+    }
+
+    function editProfile() {
+      var profileImage = document.getElementById('profile-image');
+      var alamat = document.getElementById('alamat').value;
+      var notelpon = document.getElementById('notelpon').value;
+
+      localStorage.setItem('alamat', alamat);
+      localStorage.setItem('notelpon', notelpon);
+    }
+    window.addEventListener('DOMContentLoaded', function () {
+      var alamat = localStorage.getItem('alamat');
+      var notelpon = localStorage.getItem('notelpon');
+
+      var alamatInput = document.getElementById('alamat');
+      var notelponInput = document.getElementById('notelpon');
+
+      alamatInput.value = alamat;
+      notelponInput.value = notelpon;
+
+      // Cek apakah ada perubahan alamat dan nomor telepon yang disimpan dalam penyimpanan lokal
+      if (alamat && notelpon) {
+        alamatInput.value = alamat;
+        notelponInput.value = notelpon;
+      }
+    });
+  </script>
+
+</body>
+
+</html>

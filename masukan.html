@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Halaman Kritik & Saran</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Poppins:wght@100;500&display=swap');
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #F2F2F2;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333333;
+    }
+
+    form {
+      background-color: #FFFFFF;
+      padding: 20px;
+      border-radius: 5px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+      color: #333333;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: auto;
+      border: 1px solid #CCCCCC;
+      border-radius: 5px;
+    }
+
+    textarea {
+      height: 350px;
+      margin-right: 50px;
+    }
+
+    .button-wrapper {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    .button-wrapper button {
+      background-color: #FFA463;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      height: 40px;
+      padding: 0 20px;
+
+      margin-left: 10px;
+    }
+
+    .button-wrapper button img {
+      max-width: 80%;
+      max-height: 80%;
+    }
+
+    .button-wrapper button#send-button {
+      background-color: #FFA463;
+    }
+
+    .button-wrapper button#send-button:hover {
+      background-color: #FF8542;
+    }
+
+    .button-wrapper button#cancel-button {
+      background-color: #CCCCCC;
+      color: #333333;
+    }
+
+    .button-wrapper button#cancel-button:hover {
+      background-color: #999999;
+    }
+    
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Form Kritik & Saran</h1>
+    <form action="halamanmasukan.html" method="post" onsubmit="saveSuggestion(event)">
+      <label for="message">Pesan:</label>
+      <textarea id="message" name="message" placeholder="masukan pesan disini..." required></textarea>
+      <div class="button-wrapper">
+        <button type="submit" id="send-button"><img src="IMG/send.png" alt=""></button>
+        <button type="button" id="cancel-button" onclick="goToHalamanMasukan()">Batal</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    function goToHalamanMasukan() {
+      window.location.href = "halamanmasukan.html";
+    }
+
+    function saveSuggestion(event) {
+      event.preventDefault(); // Mencegah pengiriman formulir
+
+      // Mendapatkan nilai pesan dari textarea
+      var message = document.getElementById("message").value;
+
+      // Menyimpan pesan di localStorage
+      localStorage.setItem("suggestion", message);
+
+      // Mengarahkan pengguna ke halaman "halamanmasukan.html"
+      window.location.href = "halamanmasukan.html";
+    }
+
+  </script>
+</body>
+
+</html>

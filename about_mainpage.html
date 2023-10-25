@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>About</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+
+  <style>
+    /* Tambahkan kode CSS berikut ini */
+    .sticky-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+    }
+
+    .overlay1 {
+      min-width: 80vw;
+      position: absolute;
+      margin-top: 95%;
+      left: 50%;
+      transform: translate(-50%);
+      text-align: left;
+      padding-top: 50px;
+    }
+
+    .overlay1 h4 {
+      position: relative;
+      display: inline-block;
+      padding: 10px;
+      padding-right: 20px;
+      background-color: #FFA463;
+      margin-bottom: 10px;
+    }
+
+    .img {
+      position: relative;
+      display: flex;
+      justify-content: left;
+    }
+
+    .img img {
+      width: 250px;
+      height: 200px;
+      margin: 20px;
+      border-radius: 20px;
+    }
+
+    .about-text {
+      text-align: justify;
+      padding-right: 20%;
+    }
+
+    .img2 {
+      position: relative;
+      display: block;
+    }
+
+    .img2 img {
+      width: 20px;
+      height: 20px;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="menu-icon">
+      <img src="IMG/sidebar.jpg" alt="Menu Icon" onclick="toggleSidebar()">
+    </div>
+    <a href="#" class="logo">RUSJA</a>
+    <ul>
+      <li><a href="mainpage.html">HOME</a></li>
+      <li><a href="about_mainpage.html" style="color: #FFA463;">ABOUT</a></li>
+      <li><a href="search_mainpage.html">SEARCH</a></li>
+      <li><a href="#" class="btn">AKUN</a></li>
+    </ul>
+  </header>
+  <div class="sidebar" id="sidebar">
+    <ul>
+      <li><a href="profil.html">PROFIL</a></li>
+      <li><a href="halamanmasukan.htmlml">SARAN KRITIK</a></li>
+      <li><a href="#" onclick="logout()">LOGOUT</a></li>
+    </ul>
+  </div>
+  <section>
+    <div class="overlay1">
+      <div class="overlay1-1" style="margin-bottom: 30px;">
+        <h4>VISI & MISI</h4><br>
+        <div class="about-text">
+          <b>VISI</b>
+          <br>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores dolorem quod tempore maiores
+          exercitationem. Laboriosam rem iste hic adipisci voluptate, maiores itaque obcaecati cum placeat quisquam
+          eveniet veniam exercitationem voluptatibus?
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Unde excepturi, magni pariatur neque quaerat dolor
+          quae nemo veniam numquam officia laborum similique facilis itaque possimus doloremque, hic tempora praesentium
+          velit.
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et consequuntur itaque iusto, cupiditate quasi nulla
+          quibusdam quisquam neque magnam dicta ratione expedita, mollitia explicabo atque voluptates at, a
+          reprehenderit
+          impedit!
+          <br><br>
+          <b>MISI</b>
+          <br>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestiae blanditiis laborum quidem, vitae ullam
+          similique nobis dolor, harum ab neque distinctio magni rem omnis ipsum corrupti aliquid deleniti temporibus
+          mollitia.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quidem totam excepturi dicta minima
+          exercitationem
+          eum ratione distinctio debitis, sit facilis aut commodi, nesciunt iusto esse magnam neque error odit?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo itaque commodi, optio unde, placeat aliquid
+          possimus perferendis culpa, voluptates quasi aliquam et delectus. Dolores neque, temporibus nesciunt totam
+          dicta
+          facilis.
+          lor
+
+        </div>
+      </div>
+      <div class="overlay1-1" style="margin-bottom: 30px;">
+        <h4>FASILITAS & DOKUMENTASI</h4>
+        <div class="img">
+          <img src="IMG/dokumentasi/1.jpg" alt="">
+          <img src="IMG/dokumentasi/2.JPG" alt="">
+          <img src="IMG/dokumentasi/3.JPG" alt="">
+        </div>
+        <div class="img">
+          <img src="IMG/dokumentasi/4.JPG" alt="">
+          <img src="IMG/dokumentasi/5.JPG" alt="">
+          <img src="IMG/dokumentasi/6.jpg" alt="">
+        </div>
+        <div class="about-text">
+          Asrama mahasiswa terdiri dari 4 lantai dengan 96 kamar, 1 kamar dapat dihuni 2 sampai 3 mahasiswa. Fasilitas
+          yang disediakan untuk kamar meliputi ranjang tempat tidur lengkap dengan kasur, bantal, guling, meja belajar
+          dan
+          kursi. Fasilitas diluar kamar seperti kamar mandi, air bersih, dapur umum, area parkir motor, dan penjagaan
+          oleh
+          satuan pengamanan 24 jam. Selain itu juga terdapat tempat ibadah yakni Masjid Jami Assalam masjid terbesar di
+          kampus Unja Mendalo tepatnya disebelah Asrama tersebut.
+        </div>
+      </div>
+      <div class="overlay1-1" style="margin-bottom: 30px;">
+        <h4>KONTAK</h4>
+        <div class="img2">
+          <img src="IMG/kontak/youtube.png" alt=""> RusunawaUNJA_Official<br>
+          <img src="IMG/kontak/instagram.png" alt=""> RusunawaUNJA_Official<br>
+          <img src="IMG/kontak/whatsapp.png" alt=""> +6281298892772
+        </div>
+      </div>
+    </div>
+    <script>
+      function logout() {
+        var confirmation = confirm("Apakah Anda yakin ingin logout?");
+        if (confirmation) {
+          window.location.href = "index.html";
+          // Lakukan tindakan logout di sini
+          alert("Anda telah logout");
+          // Redirect ke halaman login atau halaman lain jika diperlukan
+        } else {
+          // Jika pengguna membatalkan logout, tidak ada tindakan tambahan yang perlu dilakukan
+          // window.location.href = "mainpage.html";
+        }
+      }
+
+      window.addEventListener('scroll', function () {
+        var header = document.querySelector('header');
+        var overlay = document.querySelector('.overlay1');
+        var distance = overlay.getBoundingClientRect().top;
+
+        if (window.pageYOffset > distance) {
+          header.classList.add('sticky-header');
+        } else {
+          header.classList.remove('sticky-header');
+        }
+      });
+
+      function toggleSidebar() {
+        var sidebar = document.getElementById('sidebar');
+        sidebar.classList.toggle('active');
+      }
+    </script>
+</body>
+
+</html>

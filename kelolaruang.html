@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kelola Data Ruangan - AdminPage</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+
+  <style>
+    .sticky-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #F2F2F2;
+      margin: 0;
+      padding: 0;
+    }
+
+    dialog {
+      position: fixed;
+      top: 35%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 9999;
+      width: 400px;
+      background-color: white;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    dialog h2 {
+      margin-top: 0;
+      color: #333333;
+      font-size: 20px;
+    }
+
+    dialog input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #CCCCCC;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    dialog button.save-btn {
+      background-color: #FFA463;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 5px;
+      padding: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    dialog button.cancel-btn {
+      background-color: #DF2E38;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 5px;
+      padding: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    dialog button.save-btn:hover {
+      background-color: #FF8542;
+    }
+
+    dialog button.cancel-btn:hover {
+      background-color: #B7000E;
+    }
+
+
+    .container {
+      max-width: 800px;
+      margin: 150px auto;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333333;
+    }
+
+    .input-section {
+      background-color: #FFFFFF;
+      padding: 20px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+
+    .input-section label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+      color: #333333;
+    }
+
+    .input-section input[type="text"],
+    .input-section textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #CCCCCC;
+      border-radius: 5px;
+    }
+
+    .input-section textarea {
+      height: 150px;
+    }
+
+    button {
+      background-color: #FFA463;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 5px;
+      padding: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-bottom: 10px;
+      margin-left: 10px;
+    }
+
+    button:hover {
+      background-color: #FF8542;
+    }
+
+    .feedback-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .feedback-list li {
+      background-color: #FFFFFF;
+      padding: 20px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+      border: 2px solid #FFA463;
+      transition: border-color 0.3s ease;
+      word-wrap: break-word;
+    }
+
+    .feedback-list li:hover {
+      border-color: #FF8542;
+    }
+
+    .feedback-list li p {
+      margin: 0;
+      color: #333333;
+    }
+
+    .feedback-list li small {
+      color: #888888;
+      font-size: 12px;
+    }
+
+    .sidebar ul .sidebar-profil {
+      background-color: white;
+    }
+
+    .sidebar-profil .a-link {
+      color: #FFA463;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="menu-icon">
+      <img src="IMG/sidebar.jpg" alt="Menu Icon" onclick="toggleSidebar()">
+    </div>
+    <a href="#" class="logo">RUSJA</a>
+    <ul>
+      <li><a href="adminmainpage.html">HOME</a></li>
+      <li><a href="#" class="btn">ADMIN</a></li>
+    </ul>
+  </header>
+  <div class="sidebar" id="sidebar">
+    <ul>
+      <li><a href="kelolapenduduk.html">KELOLA DATA PENDUDUK</a></li>
+      <li class="sidebar-profil"><a href="kelolaruang.html" class="a-link">KELOLA DATA RUANGAN</a></li>
+      <li><a href="kelolasarankritik.html">KELOLA KRITIK & SARAN</a></li>
+      <li><a href="kelolaverifruang.html">VERIFIKASI PENDAFTARAN RUANG</a></li>
+      <li><a href="kelolaverifdaftar.html">VERIFIKASI PENDAFTARAN PENDUDUK</a></li>
+      <li><a href="#" onclick="logout()">LOGOUT</a></li>
+    </ul>
+  </div>
+
+  <dialog id="edit-dialog">
+    <h2>Edit Ruang</h2>
+    <label for="room-name">Kamar:</label>
+    <input type="text" id="edit-room-name" />
+    <label for="floor">Lantai:</label>
+    <input type="text" id="edit-floor" />
+    <button class="save-btn" onclick="saveEdit()">Simpan</button>
+    <button class="cancel-btn" onclick="cancelEdit()">Batal</button>
+  </dialog>
+
+  <dialog id="add-dialog">
+    <h2>Tambah Ruang</h2>
+    <label for="room-name">Kamar:</label>
+    <input type="text" id="room-name" />
+    <label for="floor">Lantai:</label>
+    <input type="text" id="floor" />
+    <button class="save-btn" onclick="tambahRuang()">Tambah</button>
+    <button class="cancel-btn">Batal</button>
+  </dialog>
+
+  <div class="container">
+    <h1>PENGELOLAAN DATA RUANGAN</h1>
+    <br>
+    <div class="feedback-list" id="new-feedback">
+      <p style="text-align: center;">Rusunawa Universitas Jambi</p><br>
+      <button onclick="showAddDialog()">+ Tambah Ruang</button>
+      <form>
+        <li>
+          <p id="suggestion-text">KAMAR 1</p>
+          <button style="float: right; position: relative; bottom: 25px; background-color: #DF2E38;"
+            onclick="hapusItem(this)"><img src="IMG/delete (1).png" style="height: 30px; width: 30px;"></button>
+          <button type="button" style="float: right; position: relative; bottom: 25px;"
+            onclick="showEditDialog(this)"><img src="IMG/edit.png" style="height: 30px; width: 30px;"></button>
+          <small id="suggestion-date">Lantai 1</small>
+        </li>
+        <li>
+          <p id="suggestion-text">KAMAR 2</p>
+          <button style="float: right; position: relative; bottom: 25px; background-color: #DF2E38;"
+            onclick="hapusItem(this)"><img src="IMG/delete (1).png" style="height: 30px; width: 30px;"></button>
+          <button type="button" style="float: right; position: relative; bottom: 25px;"
+            onclick="showEditDialog(this)"><img src="IMG/edit.png" style="height: 30px; width: 30px;"></button>
+          <small id="suggestion-date">Lantai 1</small>
+        </li>
+        <li>
+          <p id="suggestion-text">KAMAR 3</p>
+          <button style="float: right; position: relative; bottom: 25px; background-color: #DF2E38;"
+            onclick="hapusItem(this)"><img src="IMG/delete (1).png" style="height: 30px; width: 30px;"></button>
+          <button type="button" style="float: right; position: relative; bottom: 25px;"
+            onclick="showEditDialog(this)"><img src="IMG/edit.png" style="height: 30px; width: 30px;"></button>
+          <small id="suggestion-date">Lantai 1</small>
+        </li>
+        <li>
+          <p id="suggestion-text">KAMAR 4</p>
+          <button style="float: right; position: relative; bottom: 25px; background-color: #DF2E38;"
+            onclick="hapusItem(this)"><img src="IMG/delete (1).png" style="height: 30px; width: 30px;"></button>
+          <button type="button" style="float: right; position: relative; bottom: 25px;"
+            onclick="showEditDialog(this)"><img src="IMG/edit.png" style="height: 30px; width: 30px;"></button>
+          <small id="suggestion-date">Lantai 1</small>
+        </li>
+        <li>
+          <p id="suggestion-text">KAMAR 5</p>
+          <button style="float: right; position: relative; bottom: 25px; background-color: #DF2E38;"
+            onclick="hapusItem(this)"><img src="IMG/delete (1).png" style="height: 30px; width: 30px;"></button>
+          <button type="button" style="float: right; position: relative; bottom: 25px;"
+            onclick="showEditDialog(this)"><img src="IMG/edit.png" style="height: 30px; width: 30px;"></button>
+          <small id="suggestion-date">Lantai 2</small>
+        </li>
+        <li>
+          <p id="suggestion-text">KAMAR 6</p>
+          <button style="float: right; position: relative; bottom: 25px; background-color: #DF2E38;"
+            onclick="hapusItem(this)"><img src="IMG/delete (1).png" style="height: 30px; width: 30px;"></button>
+          <button type="button" style="float: right; position: relative; bottom: 25px;"
+            onclick="showEditDialog(this)"><img src="IMG/edit.png" style="height: 30px; width: 30px;"></button>
+          <small id="suggestion-date">Lantai 2</small>
+        </li>
+        <li>
+          <p id="suggestion-text">KAMAR 7</p>
+          <button style="float: right; position: relative; bottom: 25px; background-color: #DF2E38;"
+            onclick="hapusItem(this)"><img src="IMG/delete (1).png" style="height: 30px; width: 30px;"></button>
+          <button type="button" style="float: right; position: relative; bottom: 25px;"
+            onclick="showEditDialog(this)"><img src="IMG/edit.png" style="height: 30px; width: 30px;"></button>
+          <small id="suggestion-date">Lantai 2</small>
+        </li>
+        <li>
+          <p id="suggestion-text">KAMAR 8</p>
+          <button style="float: right; position: relative; bottom: 25px; background-color: #DF2E38;"
+            onclick="hapusItem(this)"><img src="IMG/delete (1).png" style="height: 30px; width: 30px;"></button>
+          <button type="button" style="float: right; position: relative; bottom: 25px;"
+            onclick="showEditDialog(this)"><img src="IMG/edit.png" style="height: 30px; width: 30px;"></button>
+          <small id="suggestion-date">Lantai 2</small>
+        </li>
+      </form>
+    </div>
+
+    <script>
+      function logout() {
+        var confirmation = confirm("Apakah Anda yakin ingin logout?");
+        if (confirmation) {
+          window.location.href = "index.html";
+          // Lakukan tindakan logout di sini
+          alert("Anda telah logout");
+          // Redirect ke halaman login atau halaman lain jika diperlukan
+        } else {
+          // Jika pengguna membatalkan logout, tidak ada tindakan tambahan yang perlu dilakukan
+          // window.location.href = "mainpage.html";
+        }
+      }
+      window.addEventListener('scroll', function () {
+        var header = document.querySelector('header');
+        var overlay = document.querySelector('.container');
+        var distance = overlay.getBoundingClientRect().top;
+
+        if (window.pageYOffset > distance) {
+          header.classList.add('sticky-header');
+        } else {
+          header.classList.remove('sticky-header');
+        }
+      });
+
+      function toggleSidebar() {
+        var sidebar = document.getElementById('sidebar');
+        sidebar.classList.toggle('active');
+      }
+
+      function goToForm() {
+        window.location.href = "masukan.html";
+      }
+      var suggestion = localStorage.getItem("suggestion");
+
+      function hapusItem(button) {
+        var listItem = button.parentNode;
+        var konfirmasi = confirm("Apakah Anda yakin ingin menghapus data ini?");
+
+        if (konfirmasi) {
+          listItem.parentNode.removeChild(listItem);
+        }
+      }
+
+      var currentEditElement = null;
+
+    function showEditDialog(button) {
+      currentEditElement = button.parentNode;
+      var roomNameInput = document.getElementById('edit-room-name');
+      var floorInput = document.getElementById('edit-floor');
+
+      var roomName = currentEditElement.querySelector('p').textContent;
+      var floor = currentEditElement.querySelector('small').textContent;
+
+      roomNameInput.value = roomName;
+      floorInput.value = floor;
+
+      var editDialog = document.getElementById('edit-dialog');
+      editDialog.showModal();
+    }
+
+    function saveEdit() {
+      var roomNameInput = document.getElementById('edit-room-name');
+      var floorInput = document.getElementById('edit-floor');
+
+      var roomName = roomNameInput.value;
+      var floor = floorInput.value;
+
+      currentEditElement.querySelector('p').textContent = roomName;
+      currentEditElement.querySelector('small').textContent = floor;
+
+      var editDialog = document.getElementById('edit-dialog');
+      editDialog.close();
+    }
+
+
+      function cancelEdit() {
+        var dialog = document.getElementById('edit-dialog');
+        dialog.close();
+      }
+
+      function showAddDialog() {
+        var addDialog = document.getElementById('add-dialog');
+        addDialog.show();
+      }
+
+      function tambahRuang() {
+        var dialog = document.getElementById('add-dialog');
+        var roomNameInput = dialog.querySelector('#room-name');
+        var floorInput = dialog.querySelector('#floor');
+        var roomName = roomNameInput.value;
+        var floor = floorInput.value;
+
+        // Buat elemen <li> baru untuk menampilkan data ruangan yang ditambahkan
+        var newRoomItem = document.createElement('li');
+        var roomNameElement = document.createElement('p');
+        var deleteButton = document.createElement('button');
+        var editButton = document.createElement('button');
+        var floorElement = document.createElement('small');
+
+        roomNameElement.textContent = roomName;
+        deleteButton.innerHTML = '<img src="IMG/delete (1).png" style="height: 30px; width: 30px;">';
+        deleteButton.style.backgroundColor = '#DF2E38';
+        deleteButton.style.float = 'right';
+        deleteButton.style.position = 'relative';
+        deleteButton.style.bottom = '25px';
+        deleteButton.addEventListener('click', function () {
+          hapusItem(this);
+        });
+
+        editButton.innerHTML = '<img src="IMG/edit.png" style="height: 30px; width: 30px;">';
+        editButton.style.float = 'right';
+        editButton.style.position = 'relative';
+        editButton.style.bottom = '25px';
+        editButton.addEventListener('click', function () {
+          showEditDialog(this);
+        });
+
+        floorElement.textContent = floor;
+
+        newRoomItem.appendChild(roomNameElement);
+        newRoomItem.appendChild(deleteButton);
+        newRoomItem.appendChild(editButton);
+        newRoomItem.appendChild(floorElement);
+
+        var feedbackList = document.getElementById('new-feedback');
+        feedbackList.appendChild(newRoomItem);
+
+        // Reset nilai input
+        roomNameInput.value = '';
+        floorInput.value = '';
+
+        // Menutup dialog
+        dialog.close();
+      }
+
+      var cancelButton = document.querySelector('#add-dialog .cancel-btn');
+      cancelButton.addEventListener('click', function () {
+        var dialog = document.getElementById('add-dialog');
+        dialog.close();
+      });
+
+    </script>
+</body>
+
+</html>

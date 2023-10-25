@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kelola Verifikasi Pendaftaran Ruang - AdminPage</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+
+  <style>
+    .sticky-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #F2F2F2;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 150px auto;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333333;
+    }
+
+    .input-section {
+      background-color: #FFFFFF;
+      padding: 20px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+
+    .input-section label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+      color: #333333;
+    }
+
+    .input-section input[type="text"],
+    .input-section textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #CCCCCC;
+      border-radius: 5px;
+    }
+
+    .input-section textarea {
+      height: 150px;
+    }
+
+    button {
+      background-color: #79D70F;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+
+    button:hover {
+      background-color: #FF8542;
+    }
+
+    .feedback-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .feedback-list li {
+      background-color: #FFFFFF;
+      padding: 20px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+      border: 2px solid #FFA463;
+      transition: border-color 0.3s ease;
+      word-wrap: break-word;
+    }
+
+    .feedback-list li:hover {
+      border-color: #FF8542;
+    }
+
+    .feedback-list li p {
+      margin: 0;
+      color: #333333;
+    }
+
+    .feedback-list li small {
+      color: #888888;
+      font-size: 12px;
+    }
+
+    .sidebar ul .sidebar-profil {
+      background-color: white;
+    }
+
+    .sidebar-profil .a-link {
+      color: #FFA463;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="menu-icon">
+      <img src="IMG/sidebar.jpg" alt="Menu Icon" onclick="toggleSidebar()">
+    </div>
+    <a href="#" class="logo">RUSJA</a>
+    <ul>
+      <li><a href="adminmainpage.html">HOME</a></li>
+      <li><a href="#" class="btn">ADMIN</a></li>
+    </ul>
+  </header>
+  <div class="sidebar" id="sidebar">
+    <ul>
+      <li><a href="kelolapenduduk.html">KELOLA DATA PENDUDUK</a></li>
+      <li><a href="kelolaruang.html">KELOLA DATA RUANGAN</a></li>
+      <li><a href="kelolasarankritik.html">KELOLA KRITIK & SARAN</a></li>
+      <li class="sidebar-profil"><a href="kelolaverifruang.html" class="a-link">VERIFIKASI PENDAFTARAN RUANG</a></li>
+      <li><a href="kelolaverifdaftar.html">VERIFIKASI PENDAFTARAN PENDUDUK</a></li>
+      <li><a href="#" onclick="logout()">LOGOUT</a></li>
+    </ul>
+  </div>
+
+  <div class="container">
+    <h1>VERIFIKASI DATA <br> PENDAFTARAN RUANG</h1>
+    <br>
+    <form>
+      <div class="feedback-list" id="new-feedback">
+        <p style="text-align: center;">Rusunawa Universitas Jambi</p><br>
+        <li>
+          <p id="suggestion-text">Rifki Iskandar</p>
+          <button type="button" style="float: right; position: relative; bottom: 50%;"
+            onclick="verifyButton(this)">Verifikasi</button>
+          <small id="suggestion-date">
+            F1E121220 <br> RUANG KAMAR 1 - LANTAI 1
+          </small>
+        </li>
+        <li>
+          <p id="suggestion-text">Rifki Iskandar</p>
+          <button type="button" style="float: right; position: relative; bottom: 50%;"
+            onclick="verifyButton(this)">Verifikasi</button>
+          <small id="suggestion-date">
+            F1E121220 <br> RUANG KAMAR 2 - LANTAI 1
+          </small>
+        </li>
+        <li>
+          <p id="suggestion-text">Rifki Iskandar</p>
+          <button type="button" style="float: right; position: relative; bottom: 50%;"
+            onclick="verifyButton(this)">Verifikasi</button>
+          <small id="suggestion-date">
+            F1E121220 <br> RUANG KAMAR 3 - LANTAI 1
+          </small>
+        </li>
+        <li>
+          <p id="suggestion-text">Rifki Iskandar</p>
+          <button type="button" style="float: right; position: relative; bottom: 50%;"
+            onclick="verifyButton(this)">Verifikasi</button>
+          <small id="suggestion-date">
+            F1E121220 <br> RUANG KAMAR 4 - LANTAI 1
+          </small>
+        </li>
+        <li>
+          <p id="suggestion-text">Rifki Iskandar</p>
+          <button type="button" style="float: right; position: relative; bottom: 50%;"
+            onclick="verifyButton(this)">Verifikasi</button>
+          <small id="suggestion-date">
+            F1E121220 <br> RUANG KAMAR 5 - LANTAI 2
+          </small>
+        </li>
+        <li>
+          <p id="suggestion-text">Rifki Iskandar</p>
+          <button type="button" style="float: right; position: relative; bottom: 50%;"
+            onclick="verifyButton(this)">Verifikasi</button>
+          <small id="suggestion-date">
+            F1E121220 <br> RUANG KAMAR 6 - LANTAI 2
+          </small>
+        </li>
+        <li>
+          <p id="suggestion-text">Rifki Iskandar</p>
+          <button type="button" style="float: right; position: relative; bottom: 50%;"
+            onclick="verifyButton(this)">Verifikasi</button>
+          <small id="suggestion-date">
+            F1E121220 <br> RUANG KAMAR 7 - LANTAI 2
+          </small>
+        </li>
+    </form>
+  </div>
+
+  <script>
+    function logout() {
+      var confirmation = confirm("Apakah Anda yakin ingin logout?");
+      if (confirmation) {
+        window.location.href = "index.html";
+        // Lakukan tindakan logout di sini
+        alert("Anda telah logout");
+        // Redirect ke halaman login atau halaman lain jika diperlukan
+      } else {
+        // Jika pengguna membatalkan logout, tidak ada tindakan tambahan yang perlu dilakukan
+        // window.location.href = "mainpage.html";
+      }
+    }
+    window.addEventListener('scroll', function () {
+      var header = document.querySelector('header');
+      var overlay = document.querySelector('.container');
+      var distance = overlay.getBoundingClientRect().top;
+
+      if (window.pageYOffset > distance) {
+        header.classList.add('sticky-header');
+      } else {
+        header.classList.remove('sticky-header');
+      }
+    });
+
+    function toggleSidebar() {
+      var sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('active');
+    }
+
+    function goToForm() {
+      window.location.href = "masukan.html";
+    }
+
+    function verifyButton(button) {
+      var listItem = button.parentNode;
+
+      if (button.innerHTML === "Verifikasi") {
+        var konfirmasi = confirm("Apakah Anda yakin ingin VERIFIKASI data ini?");
+        if (konfirmasi) {
+          button.innerHTML = "Terverifikasi";
+          button.style.backgroundColor = "#4287f5";
+          button.style.color = "#FFFFFF";
+        }
+      } else {
+        var cancelConfirmation = confirm("Apakah Anda yakin ingin MEMBATALKAN VERIFIKASI data ini?");
+        if (cancelConfirmation) {
+          button.innerHTML = "Verifikasi";
+          button.style.backgroundColor = "#79D70F";
+          button.style.color = "#FFFFFF";
+        }
+      }
+    }
+
+
+  </script>
+</body>
+
+</html>

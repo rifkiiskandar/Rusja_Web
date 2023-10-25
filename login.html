@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log In Page</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Poppins:wght@100;500&display=swap');
+
+    * {
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #FCF8E8;
+    }
+
+    .container {
+      background-color: #FCF8E8;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      width: 300px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .container img {
+      width: 100px;
+      height: 100px;
+    }
+
+    .register-link {
+      margin-top: 10px;
+    }
+
+    h3 {
+      color: #F0904B;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+      border-radius: 15px;
+      width: 90%;
+      padding: 10px;
+    }
+
+    input[type="password"] {
+      margin-bottom: 10px;
+    }
+
+    .btn-container {
+      display: flex;
+      justify-content: center;
+    }
+
+
+    button {
+      margin-left: 100px;
+      margin-top: 10px;
+      background-color: #FFA463;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #FF8542;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <img src="IMG/Unja.png" alt="Unja">
+    <h3>RUSUNAWA<br>UNIVERSITAS JAMBI</h3>
+    <p><b>LOGIN</b></p>
+    <br>
+    <form onsubmit="return validateForm()" action="mainpage.html">
+      <label for="id" style="margin-bottom: 5px;">EMAIL</label>
+      <input type="email" id="email" placeholder="Email">
+      <br>
+      <label for="password" style="margin-bottom: 5px;">PASSWORD</label>
+      <input type="password" id="password" placeholder="Password">
+      <button type="submit">Masuk</button>
+    </form>
+    <br>
+    <br>
+    <div class="register-link">Belum buat akun, <a href="daftar.html">daftar disini</a></div>
+  </div>
+  <script>
+    function validateForm() {
+      var email = document.getElementById("email").value;
+      var password = document.getElementById("password").value;
+
+      if (email === "" || password === "") {
+        alert("Harap isi ID KIP/NIM dan password sebelum melanjutkan");
+        return false;
+      }
+
+      if (email === "admin@gmail.com" && password === "admin123") {
+        window.location.href = "adminmainpage.html";
+        return false;
+      } else {
+        window.location.href = "mainpage.html";
+        return false;
+      }
+    }
+  </script>
+</body>
+
+</html>

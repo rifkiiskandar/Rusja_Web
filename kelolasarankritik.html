@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kelola Saran Kritik - AdminPage</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+
+  <style>
+    .sticky-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #F2F2F2;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 150px auto;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333333;
+    }
+
+    .input-section {
+      background-color: #FFFFFF;
+      padding: 20px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+
+    .input-section label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+      color: #333333;
+    }
+
+    .input-section input[type="text"],
+    .input-section textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #CCCCCC;
+      border-radius: 5px;
+    }
+
+    .input-section textarea {
+      height: 150px;
+    }
+
+    button {
+      background-color: #FFA463;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+
+    button:hover {
+      background-color: #FF8542;
+    }
+
+    .feedback-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .feedback-list li {
+      background-color: #FFFFFF;
+      padding: 20px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+      border: 2px solid #FFA463;
+      transition: border-color 0.3s ease;
+      word-wrap: break-word;
+    }
+
+    .feedback-list li:hover {
+      border-color: #FF8542;
+    }
+
+    .feedback-list li p {
+      margin: 0;
+      color: #333333;
+    }
+
+    .feedback-list li small {
+      color: #888888;
+      font-size: 12px;
+    }
+
+    .reply-section {
+      background-color: #F2F2F2;
+      padding: 10px;
+      border-radius: 5px;
+      margin-top: 10px;
+      border: 1px solid #CCCCCC;
+    }
+
+    .reply-section p {
+      margin: 0;
+      color: #333333;
+    }
+
+    .reply-section small {
+      color: #888888;
+      font-size: 12px;
+    }
+
+    #suggestion-text {
+      margin-bottom: 10px;
+    }
+
+    #reply-text {
+      margin-bottom: 10px;
+      font-style: italic;
+    }
+
+    .cancel-button {
+      background-color: #CCCCCC;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    .cancel-button:hover {
+      background-color: #AAAAAA;
+    }
+
+    .sidebar ul .sidebar-profil {
+      background-color: white;
+    }
+
+    .sidebar-profil .a-link {
+      color: #FFA463;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="menu-icon">
+      <img src="IMG/sidebar.jpg" alt="Menu Icon" onclick="toggleSidebar()">
+    </div>
+    <a href="#" class="logo">RUSJA</a>
+    <ul>
+      <li><a href="adminmainpage.html">HOME</a></li>
+      <li><a href="#" class="btn">ADMIN</a></li>
+    </ul>
+  </header>
+  <div class="sidebar" id="sidebar">
+    <ul>
+      <li><a href="kelolapenduduk.html">KELOLA DATA PENDUDUK</a></li>
+      <li><a href="kelolaruang.html">KELOLA DATA RUANGAN</a></li>
+      <li class="sidebar-profil"><a href="kelolasarankritik.html" class="a-link">KELOLA KRITIK & SARAN</a></li>
+      <li><a href="kelolaverifruang.html">VERIFIKASI PENDAFTARAN RUANG</a></li>
+      <li><a href="kelolaverifdaftar.html">VERIFIKASI PENDAFTARAN PENDUDUK</a></li>
+      <li><a href="#" onclick="logout()">LOGOUT</a></li>
+    </ul>
+  </div>
+
+  <div class="container">
+    <h1>PENGELOLAAN SARAN & KRITIK</h1>
+    <br>
+    <form>
+      <div class="feedback-list" id="new-feedback">
+        <p style="text-align: center;">Rusunawa Universitas Jambi</p><br>
+        <li>
+          <p id="suggestion-text">Rifki Iskandar</p>
+          <button type="button" style="float: right; position: relative; " onclick="replyFeedback(this)">Balas</button>
+          <small id="suggestion-date">
+            F1E121220 <br> Wifi di kamar 1 lantai 1 mati udah 3 hari <br> 19 Juni 2023
+          </small>
+        </li>
+        <li>
+          <p id="suggestion-text">Umar Al Masjid</p>
+          <button type="button" style="float: right; position: relative; " onclick="replyFeedback(this)">Balas</button>
+          <small id="suggestion-date">
+            F1E121220 <br> Laptop saya udah seminggu tidak bisa hidup <br> 19 Juni 2023
+          </small>
+        </li>
+        <li>
+          <p id="suggestion-text">Yassar Muwaffaq</p>
+          <button type="button" style="float: right; position: relative; " onclick="replyFeedback(this)">Balas</button>
+          <small id="suggestion-date">
+            F1E121220 <br> Kamar saya 3 hari ini mati lampu waktu siang hari <br> 19 Juni 2023
+          </small>
+        </li>
+        <li>
+          <p id="suggestion-text">Suci Indah</p>
+          <button type="button" style="float: right; position: relative; " onclick="replyFeedback(this)">Balas</button>
+          <small id="suggestion-date">
+            F1E121220 <br> Kamar saya 3 hari ini ramai orang karena disini ada wifi nya <br> 19 Juni 2023
+          </small>
+        </li>
+        <li>
+          <p id="suggestion-text">RTS. Nuraini</p>
+          <button type="button" style="float: right; position: relative; " onclick="replyFeedback(this)">Balas</button>
+          <small id="suggestion-date">
+            F1E121220 <br> Kamar saya 5 hari ini banyak semutnya apa gara gara saya terlalu manis <br> 19 Juni 2023
+          </small>
+        </li>
+        <li>
+          <p id="suggestion-text">Aludha Maryon</p>
+          <button type="button" style="float: right; position: relative; " onclick="replyFeedback(this)">Balas</button>
+          <small id="suggestion-date">
+            F1E121220 <br> 3 hari ini saya sering bantu mengusir semut yang ada di kamar aini <br> 19 Juni 2023
+          </small>
+        </li>
+        <li>
+          <p id="suggestion-text">Rahul Marcelino</p>
+          <button type="button" style="float: right; position: relative; " onclick="replyFeedback(this)">Balas</button>
+          <small id="suggestion-date">
+            F1E121220 <br> Kamar saya 3 hari ini bersih tapi kotor, kenapa ya? <br> 19 Juni 2023
+          </small>
+        </li>
+    </form>
+  </div>
+
+  <script>
+    function logout() {
+      var confirmation = confirm("Apakah Anda yakin ingin logout?");
+      if (confirmation) {
+        window.location.href = "index.html";
+        // Lakukan tindakan logout di sini
+        alert("Anda telah logout");
+        // Redirect ke halaman login atau halaman lain jika diperlukan
+      } else {
+        // Jika pengguna membatalkan logout, tidak ada tindakan tambahan yang perlu dilakukan
+        // window.location.href = "mainpage.html";
+      }
+    }
+    window.addEventListener('scroll', function () {
+      var header = document.querySelector('header');
+      var overlay = document.querySelector('.container');
+      var distance = overlay.getBoundingClientRect().top;
+
+      if (window.pageYOffset > distance) {
+        header.classList.add('sticky-header');
+      } else {
+        header.classList.remove('sticky-header');
+      }
+    });
+
+    function toggleSidebar() {
+      var sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('active');
+    }
+
+    function replyFeedback(button) {
+      var listItem = button.parentNode;
+      var suggestionText = listItem.querySelector('p').textContent;
+
+      var replyForm = document.createElement('div');
+      replyForm.classList.add('input-section');
+      replyForm.innerHTML = `
+        <label for="reply">Balasan:</label>
+        <textarea id="reply" name="reply" rows="4" placeholder="Tulis balasan Anda di sini..."></textarea>
+        <button type="submit" onclick="submitReply(this, '${suggestionText}')">Kirim</button>
+        <button type="submit" class="cancel-button" onclick="cancelReply(this)">Batal</button>
+      `;
+
+      listItem.appendChild(replyForm);
+      //button.disabled = true;
+    }
+
+    function submitReply(button, suggestionText) {
+      var replyText = button.previousElementSibling.value;
+
+      var replySection = document.createElement('div');
+      replySection.classList.add('reply-section');
+      replySection.innerHTML = `
+        <p id="suggestion-text"><b>Kepada : ${suggestionText}</b></p>
+        <p id="reply-text" >${replyText}</p>
+        <small id="suggestion-date">
+          ${getCurrentDate()}
+        </small>
+      `;
+
+      var listItem = button.parentNode.parentNode;
+      listItem.appendChild(replySection);
+
+      button.parentNode.remove();
+    }
+
+    function cancelReply(button) {
+      var replyForm = button.parentNode;
+      var listItem = replyForm.parentNode;
+
+      listItem.removeChild(replyForm);
+      listItem.querySelector('.reply-button').disabled = false;
+    }
+
+    function getCurrentDate() {
+      var date = new Date();
+      var day = date.getDate();
+      var month = date.getMonth() + 1;
+      var year = date.getFullYear();
+      var hours = date.getHours();
+      var minutes = date.getMinutes();
+
+      return 'Dikirim pada: ' + day + ' ' + getMonthName(month) + ' ' + year + ' pukul ' + hours + ':' + minutes;
+    }
+
+    function getMonthName(month) {
+      var monthNames = [
+        'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+        'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+      ];
+
+      return monthNames[month - 1];
+    }
+
+  </script>
+</body>
+
+</html>

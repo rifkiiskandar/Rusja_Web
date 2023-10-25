@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pendaftaran Ruang Terverifikasi</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Poppins:wght@100;500&display=swap');
+
+    * {
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #FCF8E8;
+    }
+
+    .container {
+      background-color: #FCF8E8;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      width: 300px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .container img {
+      width: 100px;
+      height: 100px;
+    }
+
+    .register-link {
+      margin-top: 10px;
+    }
+
+    h3 {
+      color: #F0904B;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      border-radius: 15px;
+      width: 90%;
+      padding: 10px;
+    }
+
+    input[type="password"] {
+      margin-bottom: 10px;
+    }
+
+    select {
+      border-radius: 15px;
+      width: 98%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-color: black;
+      /* Menentukan warna border menjadi hitam */
+    }
+
+    .btn-container {
+      display: flex;
+      justify-content: center;
+    }
+
+
+    button {
+      margin-left: 90px;
+      margin-top: 10px;
+      background-color: #FFA463;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #FF8542;
+    }
+
+    #inp {
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <img src="IMG/Unja.png" alt="Unja">
+    <h3>RUSUNAWA<br>UNIVERSITAS JAMBI</h3>
+    <p><b>SELAMAT REGISTRASI KAMAR <br> KAMU TELAH DIVERIFIKASI :</b></p>
+    <br>
+    <form onsubmit="return validateForm()" action="mainpage.html">
+      <label for="nama" style="margin-bottom: 5px;">NAMA</label>
+      <input type="text" id="inp" value="Umar Al Masjid" readonly>
+      <br>
+      <label for="kip" style="margin-bottom: 5px;">ID KIP</label>
+      <input type="text" id="inp" value="9920029910" readonly>
+      <br>
+      <label for="select" style="margin-bottom: 5px;">No. Kamar</label>
+      <input type="text" id="inp" value="Kamar 1 - Lantai 1" readonly>
+      <br>
+      <button type="submit">LANJUT</button>
+    </form>
+  </div>
+  <script>
+    function validateForm() {
+      var nama = document.getElementById("nama").value;
+      var kip = document.getElementById("kip").value;
+
+      if (nama === "" || kip === "") {
+        alert("Harap isi ID KIP/NIM dan password sebelum melanjutkan");
+        return false;
+      }
+    }
+  </script>
+</body>
+
+</html>

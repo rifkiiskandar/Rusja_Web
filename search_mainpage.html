@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Search</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+
+  <style>
+    /* Tambahkan kode CSS berikut ini */
+    .sticky-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+    }
+
+    .overlay1 {
+      min-width: 80vw;
+      position: absolute;
+      margin-top: 10%;
+      left: 50%;
+      transform: translate(-50%);
+      text-align: center;
+      padding-top: 50px;
+    }
+
+    .overlay1 input {
+      width: 30%;
+      height: 40px;
+      border-radius: 20px;
+      text-align: center;
+      border-color: #FFA463;
+      margin-bottom: 20px;
+    }
+
+    .overlay1 button {
+      padding: 5px 30px 5px 30px;
+      background-color: #FFA463;
+      border-radius: 20px;
+      border-color: white;
+    }
+
+    .inputdaftarnama {
+      width: 30%;
+      height: 40px;
+      text-align: center;
+      border-color: #FFA463;
+    }
+
+    #daftarNama {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    #daftarNama h3 {
+      font-size: 20px;
+    }
+
+    #daftarNama ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    #daftarNama li {
+      font-size: 16px;
+      display: inline-blockk;
+      margin: 0px;
+    }
+
+    #daftarNama li input {
+      margin-bottom: 0px;
+      border-radius: 0px;
+    }
+
+    #hasilPencarian {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="menu-icon">
+      <img src="IMG/sidebar.jpg" alt="Menu Icon" onclick="toggleSidebar()">
+    </div>
+    <a href="#" class="logo">RUSJA</a>
+    <ul>
+      <li><a href="mainpage.html">HOME</a></li>
+      <li><a href="about_mainpage.html">ABOUT</a></li>
+      <li><a href="search_mainpage.html" style="color: #FFA463;">SEARCH</a></li>
+      <li><a href="#" class="btn">AKUN</a></li>
+    </ul>
+  </header>
+  <div class="sidebar" id="sidebar">
+    <ul>
+      <li><a href="profil.html">PROFIL</a></li>
+      <li><a href="halamanmasukan.htmlml">SARAN KRITIK</a></li>
+      <li><a href="#" onclick="logout()">LOGOUT</a></li>
+    </ul>
+  </div>
+  <div class="overlay1">
+    <div class="overlay1-1" style="margin-bottom: 30px;">
+      <h2><b>PENCARIAN NAMA PENDUDUK RUSUNAWA UNJA</b></h2>
+      <br>
+      <form>
+        <input type="text" name="" id="namaInput" placeholder="nama penduduk">
+        <br>
+        <button type="button" onclick="cariNama()">CARI</button>
+      </form>
+      <form>
+        <div id="daftarNama">
+          <ul id="listNama">
+            <li><input type="text" value="John Doe" readonly></li>
+            <li><input type="text" value="Jane Smith" readonly></li>
+            <li><input type="text" value="David Johnson" readonly></li>
+            <li><input type="text" value="Sarah Anderson" readonly></li>
+            <li><input type="text" value="Michael Lee" readonly></li>
+            <li><input type="text" value="Emily Davis" readonly></li>
+            <li><input type="text" value="Daniel Wilson" readonly></li>
+            <li><input type="text" value="Olivia Martinez" readonly></li>
+            <li><input type="text" value="Matthew Thompson" readonly></li>
+            <li><input type="text" value="Sophia Taylor" readonly></li>
+          </ul>
+        </div>
+      </form>
+      <div id="hasilPencarian"></div>
+    </div>
+  </div>
+  <script>
+    function logout() {
+      var confirmation = confirm("Apakah Anda yakin ingin logout?");
+      if (confirmation) {
+        window.location.href = "index.html";
+        // Lakukan tindakan logout di sini
+        alert("Anda telah logout");
+        // Redirect ke halaman login atau halaman lain jika diperlukan
+      } else {
+        // Jika pengguna membatalkan logout, tidak ada tindakan tambahan yang perlu dilakukan
+        // window.location.href = "mainpage.html";
+      }
+    }
+
+    function toggleSidebar() {
+      var sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('active');
+    }
+
+    var daftarNama = ["John Doe", "Jane Smith", "David Johnson", "Sarah Anderson", "Michael Lee", "Emily Davis", "Daniel Wilson", "Olivia Martinez", "Matthew Thompson", "Sophia Taylor"];
+
+    function cariNama() {
+      event.preventDefault();
+      var namaInput = document.getElementById('namaInput').value.toLowerCase();
+      var listNama = document.getElementById('listNama');
+      var hasilPencarian = document.getElementById('hasilPencarian');
+
+      // Menghapus daftar nama
+      listNama.innerHTML = "";
+      hasilPencarian.textContent = "";
+
+      var namaDitemukan = false;
+
+      for (var i = 0; i < daftarNama.length; i++) {
+        var nama = daftarNama[i].toLowerCase();
+
+        if (nama.includes(namaInput)) {
+          var inputNama = document.createElement("input");
+          inputNama.type = "text";
+          inputNama.value = daftarNama[i];
+          inputNama.readOnly = true;
+          var li = document.createElement("li");
+          li.appendChild(inputNama);
+          listNama.appendChild(li);
+          namaDitemukan = true;
+        }
+      }
+
+      if (!namaDitemukan) {
+        hasilPencarian.textContent = "Nama tidak ditemukan.";
+      }
+    }
+
+
+
+    window.addEventListener('scroll', function () {
+      var header = document.querySelector('header');
+      var overlay = document.querySelector('.overlay1');
+      var distance = overlay.getBoundingClientRect().top;
+
+      if (window.pageYOffset > distance) {
+        header.classList.add('sticky-header');
+      } else {
+        header.classList.remove('sticky-header');
+      }
+    });
+  </script>
+</body>
+
+</html>

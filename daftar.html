@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Page</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Poppins:wght@100;500&display=swap');
+
+    * {
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #FCF8E8;
+    }
+
+    .container {
+      background-color: #FCF8E8;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      width: 300px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .container img {
+      width: 100px;
+      height: 100px;
+    }
+
+    .register-link {
+      margin-top: 10px;
+    }
+
+    h3 {
+      color: #F0904B;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"] {
+      border-radius: 15px;
+      width: 90%;
+      padding: 10px;
+    }
+
+    input[type="password"] {
+      margin-bottom: 10px;
+    }
+
+    .btn-container {
+      display: flex;
+      justify-content: center;
+    }
+
+
+    button {
+      margin-top: 10px;
+      margin-left: 100px;
+      background-color: #FFA463;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #FF8542;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <img src="IMG/Unja.png" alt="Unja">
+    <h3>RUSUNAWA<br>UNIVERSITAS JAMBI</h3>
+    <p><b>DAFTAR</b></p>
+    <br>
+    <form onsubmit="return validateForm()" action="daftar_tungguverif.html">
+      <label for="nama" style="margin-bottom: 5px;">NAMA</label>
+      <input type="text" id="nama" placeholder="NAMA">
+      <br>
+      <label for="nim" style="margin-bottom: 5px;">NIM</label>
+      <input type="text" id="nim" placeholder="NIM">
+      <br>
+      <label for="kip" style="margin-bottom: 5px;">ID KIP</label>
+      <input type="text" id="kip" placeholder="ID KIP">
+      <br>
+      <label for="email" style="margin-bottom: 5px;">EMAIL</label>
+      <input type="email" id="email" placeholder="email">
+      <br>
+      <label for="password" style="margin-bottom: 5px;">PASSWORD</label>
+      <input type="password" id="password" placeholder="Password">
+      <button type="submit">DAFTAR</button>
+    </form>
+  </div>
+  <script>
+    function validateForm() {
+      var nama = document.getElementById("nama").value;
+      var nim = document.getElementById("nim").value;
+      var kip = document.getElementById("kip").value;
+      var email = document.getElementById("email").value;
+      var password = document.getElementById("password").value;
+
+      if (nama === "" || nim === "" || kip === "" || email === "" || password === "") {
+        alert("Harap isi semua input sebelum melanjutkan");
+        return false;
+      }
+    }
+  </script>
+</body>
+
+</html>

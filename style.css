@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Poppins:wght@100;500&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  min-height: 80vh;
+}
+
+header {
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.6s;
+  padding: 40px 100px;
+}
+
+header .logo {
+  position: relative;
+  font-weight: 700;
+  color: black;
+  text-decoration: none;
+  font-size: 2em;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: 0.6s;
+}
+
+header ul {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header ul li {
+  position: relative;
+  list-style: none;
+}
+
+header ul li a {
+  position: relative;
+  margin: 0 15px;
+  text-decoration: none;
+  color: black;
+  letter-spacing: 2px;
+  font-weight: 50px;
+}
+
+header ul li a:hover {
+  color: #FFA463;
+  transition: 0.6s;
+}
+
+header ul li .btn {
+  background-color: #FFA463;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+header ul li .btn:hover {
+  background-color: black;
+  color: #FFA463;
+  transition: 0.6s;
+}
+
+section {
+  height: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sidebar {
+  position: fixed;
+  top: 119px;
+  left: 0;
+  height: 100vh;
+  width: 250px;
+  background-color: #D9D9D9;
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(-250px);
+  z-index: 999;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  margin-top: 50px;
+}
+
+.sidebar ul li {
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #FFA463;
+}
+
+.sidebar ul li a {
+  text-align: center;
+  color: white;
+  text-decoration: none;
+}
+
+.sidebar.active {
+  transform: translateX(0);
+}
+
+.menu-icon {
+  position: absolute;
+  top: 35px;
+  left: 20px;
+  cursor: pointer;
+  z-index: 999;
+}
+
+.menu-icon img {
+  width: 50px;
+  height: 50px;
+}
+
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.overlay h1 {
+  font-size: 3em;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.overlay h3 {
+  background-color: #FFA463;
+  padding: 5px;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+section img {
+  max-width: 75%;
+  margin-top: 8.5%;
+  border-radius: 20px;
+}
+
+h3 {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.konten {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+.konten1 {
+  padding: 15px;
+  text-align: justify;
+}
